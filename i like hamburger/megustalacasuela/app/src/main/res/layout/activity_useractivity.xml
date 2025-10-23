@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".useractivity">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:background="#F5F5F5"
+        tools:context=".useractivity">
+
+        <!-- Botón de Administración en la esquina -->
+        <Button
+            android:id="@+id/btnAdmin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:text="⚙️"
+            android:textSize="20sp"
+            android:backgroundTint="#666666"
+            android:padding="12dp" />
+
+        <!-- Título -->
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="24dp"
+            android:text="Sensor de Distancia"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#333333" />
+
+        <!-- Sección Bluetooth -->
+        <LinearLayout
+            android:id="@+id/bluetoothSection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvTitle"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            android:background="@android:color/white"
+            android:elevation="4dp"
+            android:padding="16dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:id="@+id/ivBluetoothIcon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@android:drawable/stat_sys_data_bluetooth"
+                app:tint="#2196F3" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginStart="16dp">
+
+                <TextView
+                    android:id="@+id/tvBluetoothStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bluetooth: Desconectado"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="#333333" />
+
+                <TextView
+                    android:id="@+id/tvBluetoothDevice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sin dispositivo"
+                    android:textSize="12sp"
+                    android:textColor="#666666"
+                    android:layout_marginTop="4dp" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnBluetooth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Conectar"
+                android:textSize="14sp"
+                android:backgroundTint="#2196F3" />
+
+        </LinearLayout>
+
+        <!-- Contenedor de distancia -->
+        <LinearLayout
+            android:id="@+id/distanceContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/bluetoothSection"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@android:color/white"
+            android:elevation="4dp"
+            android:padding="24dp">
+
+            <TextView
+                android:id="@+id/tvDistanceLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Distancia Actual"
+                android:textSize="16sp"
+                android:textColor="#666666" />
+
+            <TextView
+                android:id="@+id/tvDistance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="0.00"
+                android:textSize="48sp"
+                android:textStyle="bold"
+                android:textColor="#333333" />
+
+            <TextView
+                android:id="@+id/tvUnit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="metros"
+                android:textSize="18sp"
+                android:textColor="#666666" />
+
+        </LinearLayout>
+
+        <!-- Indicadores LED -->
+        <LinearLayout
+            android:id="@+id/ledContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/distanceContainer"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <!-- LED Rojo (Cerca) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="12dp">
+
+                <View
+                    android:id="@+id/ledRed"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/led_circle"
+                    android:backgroundTint="#FFCCCC" />
+
+                <TextView
+                    android:id="@+id/tvLedRedLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="ROJO - Muy Cerca (&lt; 0.5m)"
+                    android:textSize="14sp"
+                    android:textColor="#333333" />
+
+            </LinearLayout>
+
+            <!-- LED Amarillo (Media distancia) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="12dp">
+
+                <View
+                    android:id="@+id/ledYellow"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/led_circle"
+                    android:backgroundTint="#FFFFCC" />
+
+                <TextView
+                    android:id="@+id/tvLedYellowLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="AMARILLO - Medio (0.5m - 1.5m)"
+                    android:textSize="14sp"
+                    android:textColor="#333333" />
+
+            </LinearLayout>
+
+            <!-- LED Azul (Lejos) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <View
+                    android:id="@+id/ledBlue"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/led_circle"
+                    android:backgroundTint="#CCE5FF" />
+
+                <TextView
+                    android:id="@+id/tvLedBlueLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="AZUL - Lejos (> 1.5m)"
+                    android:textSize="14sp"
+                    android:textColor="#333333" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Estado del sensor -->
+        <TextView
+            android:id="@+id/tvStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="24dp"
+            android:text="Sensor Inactivo"
+            android:textSize="14sp"
+            android:textColor="#999999" />
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
